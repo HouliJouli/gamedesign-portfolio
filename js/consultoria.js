@@ -19,7 +19,7 @@
       "index.title": "Índice de serviços",
       "audience.title": "Para quem é",
       "services.title": "Serviços",
-      "services.lead": "Escolha a área e toque nos serviços que fazem sentido para o seu projeto. A seleção vira uma lista pronta para mandar por e-mail ou LinkedIn.",
+      "services.lead": "Escolha a área e toque nos serviços que fazem sentido para o seu projeto. A seleção vira um e-mail pronto para me enviar.",
       "services.count": "{n} serviços",
       "service.add": "Adicionar à lista: {s}",
       "contact.title": "Vamos conversar sobre o seu projeto",
@@ -28,6 +28,7 @@
       "footer.back": "Voltar ao portfólio",
       "tray.count1": "1 serviço selecionado", "tray.countN": "{n} serviços selecionados",
       "tray.clear": "Limpar", "tray.copy": "Copiar lista", "tray.copied": "Lista copiada ✓",
+      "tray.mail": "Enviar por e-mail", "tray.subject1": "Consultoria — interesse em 1 serviço", "tray.subjectN": "Consultoria — interesse em {n} serviços",
       "tray.fallback": "Selecione e copie o texto abaixo:",
       "tray.intro": "Olá, Victor! Tenho interesse nestes serviços de consultoria:",
       "tray.outro": "Sobre o projeto:"
@@ -41,7 +42,7 @@
       "index.title": "Services index",
       "audience.title": "Who it's for",
       "services.title": "Services",
-      "services.lead": "Pick an area and tap the services that fit your project. Your selection becomes a ready-to-send list for email or LinkedIn.",
+      "services.lead": "Pick an area and tap the services that fit your project. Your selection becomes an email ready to send me.",
       "services.count": "{n} services",
       "service.add": "Add to list: {s}",
       "contact.title": "Let's talk about your project",
@@ -50,6 +51,7 @@
       "footer.back": "Back to portfolio",
       "tray.count1": "1 service selected", "tray.countN": "{n} services selected",
       "tray.clear": "Clear", "tray.copy": "Copy list", "tray.copied": "List copied ✓",
+      "tray.mail": "Send by email", "tray.subject1": "Consulting — interested in 1 service", "tray.subjectN": "Consulting — interested in {n} services",
       "tray.fallback": "Select and copy the text below:",
       "tray.intro": "Hi Victor! I'm interested in these consulting services:",
       "tray.outro": "About the project:"
@@ -228,6 +230,16 @@
     document.body.classList.toggle("has-tray", n > 0);
     $("#cTrayCount").textContent = n === 1 ? t("tray.count1") : t("tray.countN", { n: n });
     $("#cTrayFallback").hidden = true;
+    // Link "mailto:" com destinatário, assunto e corpo já preenchidos
+    var mail = $("#cTrayMail");
+    if (P.email && n) {
+      mail.hidden = false;
+      mail.href = "mailto:" + P.email +
+        "?subject=" + encodeURIComponent(n === 1 ? t("tray.subject1") : t("tray.subjectN", { n: n })) +
+        "&body=" + encodeURIComponent(listText().replace(/\n/g, "\r\n"));
+    } else {
+      mail.hidden = true;
+    }
   }
   $("#cTrayClear").addEventListener("click", function () {
     state.picked = [];
