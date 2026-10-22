@@ -606,7 +606,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .c-tray__inner { max-width: calc(var(--max) - 2 * var(--gutter)); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .c-tray__count { font-weight: 650; }
-.c-tray__actions { display: flex; gap: 8px; align-items: center; }
+.c-tray__actions { display: flex; gap: 4px 8px; align-items: center; flex-wrap: wrap; }
+.c-tray__actions .btn[hidden] { display: none; }
 .c-tray__clear { min-height: 44px; padding: 8px 12px; border: 0; background: transparent; cursor: pointer; font-weight: 600; color: var(--ink-soft); text-decoration: underline; text-underline-offset: 4px; }
 .c-tray__fallback { max-width: calc(var(--max) - 2 * var(--gutter)); margin: 10px auto 0; font-size: 0.9rem; color: var(--ink-soft); }
 .c-tray__fallback pre { margin: 6px 0 0; padding: 10px; max-height: 30vh; overflow: auto; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-s); white-space: pre-wrap; font-family: var(--font); color: var(--ink); }
